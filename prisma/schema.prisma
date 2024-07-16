@@ -1,0 +1,136 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Type {
+  user
+  system
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  tasks         Task[]
+  subTasks      SubTask[]
+  projects      Project[]
+  labels        Label[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Priority {
+  high
+  medium
+  low
+}
+
+model Task {
+  id          String    @id @default(cuid())
+  userId      String
+  projectId   String
+  labelId     String
+  taskName    String
+  description String?
+  priority    Priority  @default(low)
+  isCompleted Boolean   @default(false)
+  dueDate     DateTime
+  startAt     DateTime?
+  endAt       DateTime?
+
+  subTask SubTask[]
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project Project @relation(fields: [projectId], references: [id])
+  label   Label   @relation(fields: [labelId], references: [id])
+}
+
+model SubTask {
+  id          String    @id @default(cuid())
+  parentId    String
+  userId      String
+  projectId   String
+  labelId     String
+  taskName    String
+  description String?
+  priority    Priority  @default(low)
+  isCompleted Boolean   @default(false)
+  dueDate     DateTime
+  startAt     DateTime?
+  endAt       DateTime?
+
+  user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parentTask Task    @relation(fields: [parentId], references: [id])
+  project    Project @relation(fields: [projectId], references: [id])
+  label      Label   @relation(fields: [labelId], references: [id])
+}
+
+model Project {
+  id      String    @id @default(cuid())
+  userId  String?
+  name    String
+  type    Type
+  task    Task[]
+  subTask SubTask[]
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Label {
+  id      String    @id @default(cuid())
+  userId  String?
+  name    String
+  type    Type
+  task    Task[]
+  subTask SubTask[]
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
