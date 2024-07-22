@@ -1,7 +1,7 @@
 'use client'
 import { Project } from '@prisma/client'
 
-import { ModalForm } from '@/components/project/modal-form'
+import { ModalFormProject } from '@/components/project/modal-form'
 
 import { links } from './link-data'
 import { SidebarMenuItems } from './sidebar-menu-items'
@@ -31,7 +31,7 @@ export function SidebarMenu({
     >
       <div className="mb-2 mr-auto w-full items-center justify-center md:flex md:justify-between">
         <span className="text-xs text-muted-foreground">{title}</span>
-        {isProject && <ModalForm userId={userId as string} />}
+        {isProject && <ModalFormProject userId={userId as string} />}
       </div>
       {items ? (
         <SidebarMenuItems items={items} />
