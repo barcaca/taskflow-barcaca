@@ -2,7 +2,7 @@ import { ThemeToggle } from '@/components/theme/theme-toggle'
 
 export function Footer() {
   return (
-    <footer className="sticky bottom-0 flex h-[90px] w-full border-t bg-background">
+    <footer className="sticky bottom-0 flex h-[90px] w-full border-t border-primary bg-background">
       <div className="w-full px-6 py-3 md:flex md:items-center md:justify-between md:py-6 lg:px-8">
         <ThemeToggle />
         <div className="mt-2 md:order-1 md:mt-0">

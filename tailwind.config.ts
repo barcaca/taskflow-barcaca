@@ -15,6 +15,10 @@ const config = {
       xs: '475px',
       ...defaultTheme.screens,
     },
+    boxShadow: {
+      shape:
+        '0px 8px 8px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 2px 2px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(0, 0, 0, 0.1), inset 0px 0px 0px 1px rgba(255, 255, 255, 0.03), inset 0px 1px 0px rgba(255, 255, 255, 0.03)',
+    },
     fontFamily: {
       heading: 'var(--font-poppins)',
       body: 'var(--font-raleway)',
@@ -68,6 +72,14 @@ const config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
+        'fade-down': {
+          '0%': { opacity: '1', transform: 'translateY(0)' },
+          '100%': { opacity: '0', transform: 'translateY(2rem)' },
+        },
+        'fade-up': {
+          '0%': { opacity: '0', transform: 'translateY(2rem)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -78,6 +90,8 @@ const config = {
         },
       },
       animation: {
+        'fade-down': 'fade-down 0.5s ease-in-out',
+        'fade-up': 'fade-up 0.5s ease-in-out',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
