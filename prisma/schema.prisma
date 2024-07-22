@@ -43,17 +43,17 @@ enum Priority {
 }
 
 model Task {
-  id          String    @id @default(cuid())
+  id          String   @id @default(cuid())
   userId      String
   projectId   String
   labelId     String
   taskName    String
   description String?
-  priority    Priority  @default(low)
-  isCompleted Boolean   @default(false)
+  priority    Priority @default(low)
+  isCompleted Boolean  @default(false)
   dueDate     DateTime
-  startAt     DateTime?
-  endAt       DateTime?
+  startAt     String?
+  endAt       String?
 
   subTask SubTask[]
 
@@ -63,18 +63,18 @@ model Task {
 }
 
 model SubTask {
-  id          String    @id @default(cuid())
+  id          String   @id @default(cuid())
   parentId    String
   userId      String
   projectId   String
   labelId     String
   taskName    String
   description String?
-  priority    Priority  @default(low)
-  isCompleted Boolean   @default(false)
+  priority    Priority @default(low)
+  isCompleted Boolean  @default(false)
   dueDate     DateTime
-  startAt     DateTime?
-  endAt       DateTime?
+  startAt     String?
+  endAt       String?
 
   user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   parentTask Task    @relation(fields: [parentId], references: [id])
