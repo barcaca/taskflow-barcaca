@@ -46,7 +46,7 @@ TaskFlow é um projeto que permite criar, deletar e editar tarefas, além de ger
 
 ## 🔗 Links
 
-<!-- - [Live Site URL](https://pokedex-barcaca.vercel.app) -->
+- [Live Site URL](https://taskflow-barcaca.vercel.app)
 
 ## 🏆 Conclusão
 
