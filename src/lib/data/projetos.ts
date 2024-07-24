@@ -34,3 +34,18 @@ async function fetchProjectsWithId(userId: string): Promise<Project[]> {
 }
 
 export const getProjectsWithId = cache(fetchProjectsWithId)
+
+async function fetchProjectNameById(id: string) {
+  try {
+    const project = await db.project.findFirst({
+      where: { id },
+      select: { name: true },
+    })
+    return project?.name ?? 'Projeto não encontrado'
+  } catch (error) {
+    console.error('Falha ao buscar nome do projeto:', error)
+    throw new Error('Falha ao buscar nome do projeto.')
+  }
+}
+
+export const getProjectNameById = cache(fetchProjectNameById)
