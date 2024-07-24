@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TaskFlow
 
-## Getting Started
+TaskFlow é um projeto que permite criar, deletar e editar tarefas, além de gerenciar projetos e tags.
 
-First, run the development server:
+## Indice
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 🖼️ [Screenshot](#-#screenshot)
+- 🛠️ [Tecnologias](#-tecnologias)
+- 🏗️ [Funcionalidades](#-funcionalidades)
+- 🔗 [Links](#-links)
+- 🏆 [Conclusão](#-conclusão)
+- 📚 [Recursos úteis](#-recursos-úteis)
+- 👤 [Autor](#-autor)
+- 📜 [Licença](#-licença)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🖼️ Screenshots
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![Desktop](/public//screenshot.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 🛠️ Tecnologias
 
-## Learn More
+**Front-end:**
 
-To learn more about Next.js, take a look at the following resources:
+![NextJS](https://img.shields.io/badge/NextJS-%23000?style=for-the-badge&logo=nextdotjs&logoColor=%23fff)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![ShadcnUi](https://img.shields.io/badge/ShadcnUi-%23000000?style=for-the-badge&logo=shadcnui&logoColor=%23fff)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![TailwindCss](https://img.shields.io/badge/Tailwind-%2306B6D4?style=for-the-badge&logo=tailwindcss&logoColor=%23fff)
 
-## Deploy on Vercel
+![Typescript](https://img.shields.io/badge/Typescript-%233178C6?style=for-the-badge&logo=typescript&logoColor=%23fff)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Back-end:** 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Prisma](https://img.shields.io/badge/Prisma-%232D3748?style=for-the-badge&logo=prisma)
+
+![Supabase](https://img.shields.io/badge/Supabase-%233FCF8E?style=for-the-badge&logo=supabase&logoColor=fff)
+
+
+
+## 🏗️ Funcionalidades
+
+- Criação, edição e exclusão de tarefas
+- Criação e exclusão de projetos
+- Criação de tags para organização de tarefas
+- Interface responsiva e intuitiva
+
+## 🔗 Links
+
+<!-- - [Live Site URL](https://pokedex-barcaca.vercel.app) -->
+
+## 🏆 Conclusão
+
+Desenvolver o TaskFlow proporcionou diversos aprendizados, incluindo:
+
+- Utilização de React para criar interfaces de usuário dinâmicas e responsivas.
+- Integração de ShadcnUi e Tailwind CSS para um design moderno e eficiente.
+- Gerenciamento de estado e comunicação com o banco de dados usando TypeScript e Next.js.
+- Utilização de Prisma e Supabase para um gerenciamento de banco de dados eficiente.
+
+## 📚 Recursos úteis
+
+- [Documentação do **Next.js:**](https://nextjs.org/docs)
+- [Documentação do **Tailwind CSS**](https://tailwindcss.com/docs)
+- [Documentação do **TypeScript**](https://www.typescriptlang.org/docs/)
+- [Documentação do **Prisma**](https://www.prisma.io/docs/)
+- [Documentação do **Supabase**](https://supabase.io/docs)
+
+## 👤 Autor
+
+- [@barcaca](https://www.github.com/barcaca)
+
+## 📜 Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [MIT](https://github.com/barcaca/taskflow-barcaca/blob/main/LICENSE)
