@@ -36,7 +36,7 @@ export function Technology() {
           <Badge
             key={item.title}
             variant={'outline'}
-            className="flex-col gap-1 p-3 shadow-sm"
+            className="shadow-sm flex-col gap-1 p-3"
           >
             {item.icon}
           </Badge>
