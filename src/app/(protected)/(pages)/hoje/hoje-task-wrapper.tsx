@@ -11,16 +11,16 @@ import { Badge } from '@/components/ui/badge'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { getLabels } from '@/lib/data/labels'
 import { getProjects } from '@/lib/data/projetos'
-import { getTaskCompleted, getTaskIncomplete } from '@/lib/data/task'
+import { getOverdueTask, getTodayTask } from '@/lib/data/task'
 
-interface TaskWrapperProps {
+interface HojeTaskWrapperProps {
   title: string
   userId: string
 }
-export async function TaskWrapper({ userId, title }: TaskWrapperProps) {
-  const [completed, incompleted] = await Promise.all([
-    getTaskCompleted(userId),
-    getTaskIncomplete(userId),
+export async function HojeTaskWrapper({ userId, title }: HojeTaskWrapperProps) {
+  const [overdue, today] = await Promise.all([
+    getOverdueTask(userId),
+    getTodayTask(userId),
   ])
   const [labels, projects] = await Promise.all([
     getLabels(userId),
@@ -31,24 +31,24 @@ export async function TaskWrapper({ userId, title }: TaskWrapperProps) {
       <TaskHeader title={title} />
       <ScrollArea>
         <main className="mx-auto h-full w-full space-y-3 md:max-w-4xl">
-          <TaskList items={incompleted} labels={labels} projects={projects} />
+          <TaskList items={today} labels={labels} projects={projects} />
           <Accordion type="single" collapsible>
-            {completed.length > 0 && (
-              <AccordionItem value="completed">
+            {overdue.length > 0 && (
+              <AccordionItem value="overdue">
                 <AccordionTrigger>
                   <h3 className="flex items-center gap-2">
-                    Completo{' '}
+                    Atrasadas{' '}
                     <Badge
                       variant={'outline'}
                       className="size-6 items-center justify-center rounded-full border-primary"
                     >
-                      {completed.length}
+                      {overdue.length}
                     </Badge>
                   </h3>
                 </AccordionTrigger>
                 <AccordionContent className="space-y-2">
                   <TaskList
-                    items={completed}
+                    items={overdue}
                     labels={labels}
                     projects={projects}
                   />

@@ -16,14 +16,21 @@ import {
 interface TimePickerProps {
   name: keyof TCreateTaskData
   time: string
+  defaultValue?: string
   onTimeChanged: (time: string, fieldName: string) => void
 }
-export function TimePicker({ name, time, onTimeChanged }: TimePickerProps) {
+export function TimePicker({
+  name,
+  time,
+  onTimeChanged,
+  defaultValue,
+}: TimePickerProps) {
   const { control } = useFormContext<TCreateTaskData>()
   return (
     <FormField
       control={control}
       name={name}
+      defaultValue={defaultValue}
       render={() => (
         <FormItem>
           <FormControl>

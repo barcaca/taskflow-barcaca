@@ -4,7 +4,7 @@ import { Skeleton } from '../ui/skeleton'
 
 export function TaskWrapperSkeleton() {
   return (
-    <div className="mx-auto h-full w-full space-y-3 overflow-y-auto md:max-w-4xl">
+    <div className="mx-auto mt-16 h-full w-full space-y-3 overflow-y-auto md:max-w-4xl">
       <Skeleton className="h-8 w-40 bg-muted-foreground" />
       <div className="flex gap-2">
         <Skeleton className="h-6 w-28 bg-muted-foreground" />

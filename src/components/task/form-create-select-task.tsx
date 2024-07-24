@@ -44,11 +44,13 @@ interface FormCreateSelectTaskProps {
   items: Label[] | Project[] | Item[]
   name: string
   placeholder: string
+  defaultValue?: string
 }
 export function FormCreateSelectTask({
   name,
   placeholder,
   items,
+  defaultValue,
 }: FormCreateSelectTaskProps) {
   const { control } = useFormContext()
   return (
@@ -56,6 +58,7 @@ export function FormCreateSelectTask({
       <FormField
         control={control}
         name={name}
+        defaultValue={defaultValue}
         render={({ field }) => (
           <FormItem>
             <Select onValueChange={field.onChange} defaultValue={field.value}>

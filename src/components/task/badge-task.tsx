@@ -16,13 +16,6 @@ export function BadgeTask({
   isEndAt,
   srOnly,
 }: BadgeTaskProps) {
-  function convertTo12HourFormat(time: string) {
-    const [hours, minutes] = time.split(':').map(Number)
-    const ampm = hours >= 12 ? 'PM' : 'AM'
-    const formattedHours = hours % 12 || 12 // Convert 0 to 12 for 12 AM
-    const formattedMinutes = minutes.toString().padStart(2, '0')
-    return `${formattedHours}:${formattedMinutes} ${ampm}`
-  }
   return (
     <div
       className={`${srOnly ? 'right-2' : 'right-0.5'} absolute !m-0 flex items-end gap-1`}
@@ -38,11 +31,10 @@ export function BadgeTask({
         {isStartAt &&
           (isEndAt ? (
             <>
-              {convertTo12HourFormat(isStartAt)} -{' '}
-              {convertTo12HourFormat(isEndAt)}
+              {isStartAt} - {isEndAt}
             </>
           ) : (
-            convertTo12HourFormat(isStartAt)
+            isStartAt
           ))}
       </Badge>
     </div>

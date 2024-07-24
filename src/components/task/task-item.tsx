@@ -1,4 +1,4 @@
-import { Task } from '@prisma/client'
+import { Label, Project, Task } from '@prisma/client'
 import { SignalHighIcon, SignalLowIcon, SignalMediumIcon } from 'lucide-react'
 
 import { BadgeTask } from '@/components/task/badge-task'
@@ -8,8 +8,10 @@ import { FormUpdateTask } from '@/components/task/form-update-task'
 
 interface TaskItemProps {
   task: Task
+  labels: Label[]
+  projects: Project[]
 }
-export function TaskItem({ task }: TaskItemProps) {
+export function TaskItem({ task, labels, projects }: TaskItemProps) {
   const { id, userId } = task
 
   function getPriorityIcon(priority: string) {
@@ -27,6 +29,7 @@ export function TaskItem({ task }: TaskItemProps) {
   return (
     <div className="grid min-h-12 w-full grid-cols-3 items-center gap-1 rounded-sm bg-background px-3 py-2 shadow-shape sm:flex">
       <FormUpdateTask task={task} />
+
       <div className="relative col-span-2 flex h-8 w-full items-center">
         <BadgeTask
           dueDate={task.dueDate}
@@ -39,7 +42,7 @@ export function TaskItem({ task }: TaskItemProps) {
         {getPriorityIcon(task.priority)}
       </div>
       <div className="ml-auto flex gap-2">
-        <FormEditTask userId={userId} taskId={id} />
+        <FormEditTask task={task} labels={labels} projects={projects} />
         <FormDeleteTask userId={userId} taskId={id} />
       </div>
     </div>

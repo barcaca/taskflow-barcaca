@@ -6,13 +6,14 @@ import { State } from '@/lib/custom-toast'
 import { getUser } from '@/lib/data/user'
 import db from '@/lib/db'
 
-import { CreateTaskSchema, TCreateTaskData } from './schema'
+import { EditTaskSchema, TEditTaskData } from './schema'
 
-export async function createTaskAction(
+export async function editTaskAction(
   userId: string,
-  formData: TCreateTaskData,
+  taskId: string,
+  formData: TEditTaskData,
 ): Promise<State> {
-  const validationFileds = CreateTaskSchema.safeParse(formData)
+  const validationFileds = EditTaskSchema.safeParse(formData)
   if (!validationFileds.success) {
     return { message: 'Formulário inválido.', status: 400 }
   }
@@ -26,35 +27,30 @@ export async function createTaskAction(
       status: 403,
     }
   }
-  const {
-    dueDate,
-    labelId,
-    priority,
-    projectId,
-    taskName,
-    description,
-    endAt,
-    startAt,
-  } = validationFileds.data
+  const { priority, taskName, dueDate, projectId, labelId, endAt, startAt } =
+    validationFileds.data
+
   const data = {
-    taskName,
-    description: description || null,
-    dueDate,
-    labelId,
     priority,
+    taskName,
+    dueDate,
     projectId,
-    userId,
-    startAt: startAt || null,
+    labelId,
     endAt: endAt || null,
+    startAt: startAt || null,
   }
 
   try {
-    await db.task.create({
+    await db.task.update({
+      where: {
+        id: taskId,
+        userId,
+      },
       data,
     })
-    revalidatePath('/')
-    return { message: 'Tarefa criada com sucesso.', status: 201 }
+    revalidatePath('/correio', 'page')
+    return { message: 'Tarefa atualizada com sucesso.', status: 200 }
   } catch (error) {
-    return { message: 'Não foi possível salvar a tarefa.', status: 500 }
+    return { message: 'Não foi possível atualizar a tarefa.', status: 500 }
   }
 }
