@@ -92,7 +92,7 @@ export function FormCreateTask({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onCreateTask)}
-        className="relative w-full max-w-lg space-y-3 overflow-hidden"
+        className="relative w-full max-w-lg space-y-1 overflow-hidden md:space-y-3"
       >
         <FormField
           control={form.control}
@@ -153,7 +153,7 @@ export function FormCreateTask({
         )}
 
         <div
-          className={`${time ? 'min-h-[410px]' : ''} relative min-h-[350px] w-full flex-1 space-y-3 transition-all duration-700`}
+          className={`${time ? 'min-h-[350px] md:min-h-[400px]' : ''} relative min-h-[350px] w-full flex-1 space-y-1 transition-all duration-700 md:space-y-3`}
         >
           <FormField
             control={form.control}
@@ -180,7 +180,7 @@ export function FormCreateTask({
           <div
             className={`${time ? 'visible origin-left translate-x-0 opacity-100' : 'invisible absolute z-0 origin-right -translate-x-full opacity-0'} absolute flex w-full flex-1 flex-col gap-2 transition-all duration-700 ease-in-out`}
           >
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-4 gap-1 md:gap-3">
               {Array.from({ length: 24 }).map((_, i) => {
                 const hour = i.toString().padStart(2, '0')
                 const time = `${hour}:00`
