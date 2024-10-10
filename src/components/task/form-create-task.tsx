@@ -44,7 +44,6 @@ export function FormCreateTask({
   const createTaskWithId = createTaskAction.bind(null, userId)
   const defaultValues = {
     taskName: '',
-    description: '',
     priority: Priority.low,
     projectId: 'clyt0n1w8000013m3fnxk04t7',
     labelId: 'clyq8srh90000btmrqf8vad9g',

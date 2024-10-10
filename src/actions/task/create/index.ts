@@ -26,19 +26,10 @@ export async function createTaskAction(
       status: 403,
     }
   }
-  const {
-    dueDate,
-    labelId,
-    priority,
-    projectId,
-    taskName,
-    description,
-    endAt,
-    startAt,
-  } = validationFileds.data
+  const { dueDate, labelId, priority, projectId, taskName, endAt, startAt } =
+    validationFileds.data
   const data = {
     taskName,
-    description: description || null,
     dueDate,
     labelId,
     priority,
@@ -55,6 +46,6 @@ export async function createTaskAction(
     revalidatePath('/')
     return { message: 'Tarefa criada com sucesso.', status: 201 }
   } catch (error) {
-    return { message: 'Não foi possível salvar a tarefa.', status: 500 }
+    return { message: String(error), status: 500 }
   }
 }
